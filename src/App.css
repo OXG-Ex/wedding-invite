@@ -1,1 +1,13 @@
 @import "tailwindcss";
+
+body {
+  margin: 0 auto;
+  font-family: "Transforma Mix_Trial";
+}
+
+@font-face {
+  font-family: "Transforma Mix_Trial";
+  font-weight: normal;
+  font-style: normal;
+  src: url("./assets/TransformaMix_Regular.ttf");
+}

@@ -3,6 +3,9 @@ import "./App.css";
 import {TopBlock} from "./components/TopBlock";
 
 const theme = createTheme({
+  typography: {
+    fontFamily: ["Transforma Mix_Trial"].join(","),
+  },
   palette: {
     mode: "light",
     primary: {
