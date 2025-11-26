@@ -1,5 +1,7 @@
 import {createTheme, CssBaseline, ThemeProvider} from "@mui/material";
 import "./App.css";
+import UsPhoto from "./assets/us_photo.jpg";
+import {DaySchedule} from "./components/DaySchedule";
 import {TopBlock} from "./components/TopBlock";
 
 const theme = createTheme({
@@ -26,7 +28,14 @@ export const App = () => {
   return (
     <ThemeProvider theme={theme}>
       <CssBaseline />
-      <TopBlock />
+
+      <div className=" flex flex-col gap-8">
+        <TopBlock />
+        <div className="flex w-full items-center justify-center">
+          <img src={UsPhoto} alt="aboba" className="w-136 h-192 object-fill" />
+        </div>
+        <DaySchedule />
+      </div>
     </ThemeProvider>
   );
 };

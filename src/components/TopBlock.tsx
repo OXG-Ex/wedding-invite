@@ -38,7 +38,7 @@ export const TopBlock: FC = () => {
         <Stack
           direction="column"
           className="justify-center items-center w-[50%] h-screen px-10"
-          gap={7}
+          gap={6}
         >
           <Typography variant="h3" fontWeight={700}>
             ДОРОГИЕ ГОСТИ!
@@ -61,7 +61,9 @@ export const TopBlock: FC = () => {
             частью.
           </Typography>
 
-          <Typography variant="h4">Семён и Дарья</Typography>
+          <Typography variant="h4" fontWeight={700}>
+            Семён и Дарья
+          </Typography>
         </Stack>
       </Stack>
     </div>
