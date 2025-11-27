@@ -10,31 +10,12 @@ import {
   Typography,
 } from "@mui/material";
 import {useState, type FC} from "react";
-
-const SCRIPT_URL =
-  "https://script.google.com/macros/s/AKfycbzNTfpmMPjcDLbTxmWVJjV-5L5UxsTZbnJNZkD8Fu-YvzdHJGUEZe1u3XM2dPAvqKZg/exec";
-
-const alcoholDict: Record<string, string> = {
-  vodka: "Водка",
-  whiskey: "Виски",
-  wine_red: "Вино красное",
-  wine_white: "Вино белое",
-  champagne: "Шампанское",
-  non_alcohol: "Что-нибудь безалкогольное",
-};
-
-const defaultValues = {
-  name: "",
-  presence: "will",
-  message: "",
-  alcohol: Object.keys(alcoholDict).reduce(
-    (acc, curr) => ({...acc, [curr]: false}),
-    {} as Record<string, boolean>
-  ),
-};
+import {alcoholDict, defaultValues} from "../lib/consts";
+import {sendData} from "../lib/sendData";
+import type {TForm} from "../lib/types";
 
 export const RsvpForm: FC = () => {
-  const [formData, setFormData] = useState(defaultValues);
+  const [formData, setFormData] = useState<TForm>(defaultValues);
   const [isLoading, setIsLoading] = useState(false);
   const [requestMessage, setRequestMessage] = useState("");
 
@@ -60,29 +41,8 @@ export const RsvpForm: FC = () => {
     e.preventDefault();
     setIsLoading(true);
 
-    const dataToSend = {
-      name: formData.name,
-      presence:
-        formData.presence === "will"
-          ? "Я приду / Мы придём"
-          : "Прийти не получится",
-      message: formData.message,
-      alcohol: Object.entries(formData.alcohol)
-        .filter(([_, value]) => !!value)
-        .map(([key]) => alcoholDict[key])
-        .join(", "),
-    };
-
     try {
-      const response = await fetch(SCRIPT_URL, {
-        method: "POST",
-        headers: {
-          "Content-Type": "text/plain;charset=utf-8",
-        },
-        body: JSON.stringify(dataToSend),
-      });
-
-      const result = await response.json();
+      const result = await sendData(formData);
       if (result.status === "success") {
         setFormData(defaultValues);
         setRequestMessage("Данные отправлены!");

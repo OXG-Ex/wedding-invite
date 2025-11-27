@@ -1,10 +1,10 @@
 import {Icon, Typography} from "@mui/material";
 import type {FC} from "react";
 import {Slide} from "react-awesome-reveal";
-import NewlyWeds from "../assets//icons/newlyweds.svg";
-import WeddingLocation from "../assets/icons/wedding-location.svg";
-import Dinner from "../assets/icons/wedding-reception.svg";
-import Rings from "../assets/icons/wedding-rings.svg";
+import NewlyWeds from "../../../assets/icons/newlyweds.svg";
+import WeddingLocation from "../../../assets/icons/wedding-location.svg";
+import Dinner from "../../../assets/icons/wedding-reception.svg";
+import Rings from "../../../assets/icons/wedding-rings.svg";
 
 export const DaySchedule: FC = () => {
   return (

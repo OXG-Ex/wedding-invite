@@ -1,7 +1,7 @@
 import KeyboardDoubleArrowDownOutlinedIcon from "@mui/icons-material/KeyboardDoubleArrowDownOutlined";
 import {Stack, Typography} from "@mui/material";
 import {Slide} from "react-awesome-reveal";
-import monogram from "../assets/Monogramm.svg";
+import monogram from "../../../assets/Monogramm.svg";
 
 import type {FC} from "react";
 

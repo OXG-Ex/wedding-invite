@@ -1,6 +1,6 @@
 import {Typography} from "@mui/material";
 import type {FC} from "react";
-import Restaurant from "../assets/restaurant.webp";
+import Restaurant from "../../../assets/restaurant.webp";
 
 export const Location: FC = () => {
   return (
