@@ -11,6 +11,7 @@ import {DaySchedule} from "./components/DaySchedule";
 import {Details} from "./components/Details";
 import {DressCode} from "./components/DressCode";
 import {Location} from "./components/Location";
+import {Questions} from "./components/Questions";
 import {RsvpForm} from "./components/RsvpForm";
 import {TopBlock} from "./components/TopBlock";
 
@@ -50,7 +51,11 @@ export const App = () => {
         <Details />
         <DressCode />
         <RsvpForm />
+
+        <Questions />
+
         <Typography textAlign="center">\\\ тут ещё одно фото///</Typography>
+
         <Typography variant="h3" fontWeight={700} textAlign="center">
           МЫ БУДЕМ СЧАСТЛИВЫ ВИДЕТЬ ВАС!
         </Typography>

@@ -1,5 +1,6 @@
 import KeyboardDoubleArrowDownOutlinedIcon from "@mui/icons-material/KeyboardDoubleArrowDownOutlined";
 import {Stack, Typography} from "@mui/material";
+import {Slide} from "react-awesome-reveal";
 import monogram from "../assets/Monogramm.svg";
 
 import type {FC} from "react";
@@ -25,14 +26,16 @@ export const TopBlock: FC = () => {
         </Stack>
 
         <div className="h-screen flex items-end pb-7">
-          <KeyboardDoubleArrowDownOutlinedIcon
-            color="primary"
-            className="animate-pulse"
-            sx={{
-              width: "40px",
-              height: "40px",
-            }}
-          />
+          <Slide direction="down">
+            <KeyboardDoubleArrowDownOutlinedIcon
+              color="primary"
+              className="animate-pulse"
+              sx={{
+                width: "40px",
+                height: "40px",
+              }}
+            />
+          </Slide>
         </div>
 
         <Stack

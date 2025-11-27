@@ -14,21 +14,7 @@ import {useState, type FC} from "react";
 const SCRIPT_URL =
   "https://script.google.com/macros/s/AKfycbzNTfpmMPjcDLbTxmWVJjV-5L5UxsTZbnJNZkD8Fu-YvzdHJGUEZe1u3XM2dPAvqKZg/exec";
 
-const defaultValues = {
-  name: "",
-  presence: "will",
-  message: "",
-  alcohol: {
-    vodka: false,
-    whiskey: false,
-    wine_red: false,
-    wine_white: false,
-    champagne: false,
-    non_alcohol: false,
-  },
-};
-
-const alcoholDict = {
+const alcoholDict: Record<string, string> = {
   vodka: "Водка",
   whiskey: "Виски",
   wine_red: "Вино красное",
@@ -37,8 +23,20 @@ const alcoholDict = {
   non_alcohol: "Что-нибудь безалкогольное",
 };
 
+const defaultValues = {
+  name: "",
+  presence: "will",
+  message: "",
+  alcohol: Object.keys(alcoholDict).reduce(
+    (acc, curr) => ({...acc, [curr]: false}),
+    {} as Record<string, boolean>
+  ),
+};
+
 export const RsvpForm: FC = () => {
   const [formData, setFormData] = useState(defaultValues);
+  const [isLoading, setIsLoading] = useState(false);
+  const [requestMessage, setRequestMessage] = useState("");
 
   const handleChange = (
     e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>
@@ -60,6 +58,7 @@ export const RsvpForm: FC = () => {
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
+    setIsLoading(true);
 
     const dataToSend = {
       name: formData.name,
@@ -70,7 +69,7 @@ export const RsvpForm: FC = () => {
       message: formData.message,
       alcohol: Object.entries(formData.alcohol)
         .filter(([_, value]) => !!value)
-        .map(([key]) => alcoholDict[key as "vodka"])
+        .map(([key]) => alcoholDict[key])
         .join(", "),
     };
 
@@ -86,13 +85,15 @@ export const RsvpForm: FC = () => {
       const result = await response.json();
       if (result.status === "success") {
         setFormData(defaultValues);
-        alert("Данные отправлены!");
+        setRequestMessage("Данные отправлены!");
       } else {
-        alert("Ошибка при отправке");
+        setRequestMessage("Ошибка при отправке");
       }
     } catch (err) {
       console.error(err);
-      alert("Ошибка сети");
+      setRequestMessage("Ошибка сети");
+    } finally {
+      setIsLoading(false);
     }
   };
 
@@ -117,6 +118,7 @@ export const RsvpForm: FC = () => {
               defaultValue="will"
               name="presence"
               value={formData.presence}
+              onChange={handleChange}
             >
               <FormControlLabel
                 value="will"
@@ -143,7 +145,6 @@ export const RsvpForm: FC = () => {
               name="name"
               value={formData.name}
               onChange={handleChange}
-              helperText=""
             />
           </FormControl>
 
@@ -159,74 +160,14 @@ export const RsvpForm: FC = () => {
                 <FormControlLabel
                   control={
                     <Checkbox
-                      checked={formData.alcohol[key as "vodka"]}
+                      checked={formData.alcohol[key]}
                       onChange={handleCheckboxChange}
                       name={key}
                     />
                   }
-                  label={alcoholDict[key as "vodka"]}
+                  label={alcoholDict[key]}
                 />
               ))}
-              {/* <FormControlLabel
-                control={
-                  <Checkbox
-                    checked={vodka}
-                    onChange={handleCheckboxChange}
-                    name="vodka"
-                  />
-                }
-                label="Водка"
-              />
-              <FormControlLabel
-                control={
-                  <Checkbox
-                    checked={whiskey}
-                    onChange={handleCheckboxChange}
-                    name="whiskey"
-                  />
-                }
-                label="Виски"
-              />
-              <FormControlLabel
-                control={
-                  <Checkbox
-                    checked={wine_red}
-                    onChange={handleCheckboxChange}
-                    name="wine_red"
-                  />
-                }
-                label="Вино красное"
-              />
-              <FormControlLabel
-                control={
-                  <Checkbox
-                    checked={wine_white}
-                    onChange={handleCheckboxChange}
-                    name="wine_white"
-                  />
-                }
-                label="Вино белое"
-              />
-              <FormControlLabel
-                control={
-                  <Checkbox
-                    checked={champagne}
-                    onChange={handleCheckboxChange}
-                    name="champagne"
-                  />
-                }
-                label="Шампанское"
-              />
-              <FormControlLabel
-                control={
-                  <Checkbox
-                    checked={non_alcohol}
-                    onChange={handleCheckboxChange}
-                    name="non_alcohol"
-                  />
-                }
-                label="Что-нибудь безалкогольное"
-              /> */}
             </FormGroup>
           </FormControl>
 
@@ -246,9 +187,14 @@ export const RsvpForm: FC = () => {
             />
           </FormControl>
 
-          <Button type="submit" variant="outlined">
+          <Button type="submit" variant="outlined" loading={isLoading}>
             Отправить
           </Button>
+          {!!requestMessage && !isLoading && (
+            <Typography variant="body2" textAlign="center" color="primary">
+              {requestMessage}
+            </Typography>
+          )}
         </form>
       </div>
     </div>
