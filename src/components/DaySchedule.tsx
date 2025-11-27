@@ -9,7 +9,7 @@ export const DaySchedule: FC = () => {
   return (
     <div className="w-full justify-center flex">
       <div className="flex flex-col gap-15 items-center">
-        <Typography variant="h4" fontWeight={700}>
+        <Typography variant="h3" fontWeight={700}>
           ПРОГРАММА ДНЯ
         </Typography>
 

@@ -49,11 +49,11 @@ export const TopBlock: FC = () => {
           </Typography>
 
           <Stack direction={"row"} className="items-center gap-2">
-            <Typography variant="h4">10</Typography>
-            <div className="border-l-3 border-gray-400 h-full" />
-            <Typography variant="h4">10</Typography>
-            <div className="border-l-3 border-gray-400 h-full" />
-            <Typography variant="h4">2026</Typography>
+            <Typography variant="h3">10</Typography>
+            <div className="border-l-3 border-red-800 h-full" />
+            <Typography variant="h3">10</Typography>
+            <div className="border-l-3 border-red-800 h-full" />
+            <Typography variant="h3">2026</Typography>
           </Stack>
 
           <Typography variant="h5" className="text-center">
@@ -61,7 +61,7 @@ export const TopBlock: FC = () => {
             частью.
           </Typography>
 
-          <Typography variant="h4" fontWeight={700}>
+          <Typography variant="h3" fontWeight={700}>
             Семён и Дарья
           </Typography>
         </Stack>

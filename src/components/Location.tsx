@@ -6,7 +6,7 @@ export const Location: FC = () => {
   return (
     <div className="w-full justify-center flex">
       <div className="flex flex-col gap-8 items-center">
-        <Typography variant="h4" fontWeight={700}>
+        <Typography variant="h3" fontWeight={700}>
           ЛОКАЦИЯ
         </Typography>
 
@@ -22,7 +22,7 @@ export const Location: FC = () => {
 
         <img src={Restaurant} className="object-fill w-140" />
 
-        <Typography variant="h4" fontWeight={700}>
+        <Typography variant="h3" fontWeight={700}>
           КАК ДОБРАТЬСЯ?
         </Typography>
 

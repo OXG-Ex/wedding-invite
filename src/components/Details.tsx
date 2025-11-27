@@ -5,7 +5,7 @@ export const Details: FC = () => {
   return (
     <div className="w-full justify-center flex">
       <div className="flex flex-col gap-6 items-center">
-        <Typography variant="h4" fontWeight={700}>
+        <Typography variant="h3" fontWeight={700}>
           ДЕТАЛИ
         </Typography>
 
@@ -14,7 +14,7 @@ export const Details: FC = () => {
           пожелания в конвертах помогут осуществить наши мечты!
         </Typography>
 
-        <Typography variant="h4" fontWeight={700}>
+        <Typography variant="h3" fontWeight={700}>
           ~
         </Typography>
 
@@ -23,7 +23,7 @@ export const Details: FC = () => {
           любимого вина, которую мы откроем на ближайшем совместном празднике.
         </Typography>
 
-        <Typography variant="h4" fontWeight={700}>
+        <Typography variant="h3" fontWeight={700}>
           ~
         </Typography>
 
