@@ -5,6 +5,7 @@ import {
   useMediaQuery,
   useTheme,
 } from "@mui/material";
+import clsx from "clsx";
 import type {FC} from "react";
 import {Slide} from "react-awesome-reveal";
 import {scheduleItems} from "../lib/consts";
@@ -20,7 +21,7 @@ export const DaySchedule: FC = () => {
           ПРОГРАММА ДНЯ
         </Typography>
 
-        <Container className="flex flex-col gap-15" maxWidth="sm">
+        <Container className="flex flex-col gap-20" maxWidth="sm">
           <Slide duration={300} fraction={0} direction="left" triggerOnce>
             {scheduleItems.map(({icon, subtitle, time, title}, idx) => (
               <div className="flex gap-4 h-20 items-center" key={idx}>
@@ -32,7 +33,12 @@ export const DaySchedule: FC = () => {
                   <img src={icon} />
                 </Icon>
 
-                <div className="flex flex-col gap-4 ">
+                <div
+                  className={clsx(
+                    "flex flex-col ",
+                    isMobile ? "gap-1" : "gap-4"
+                  )}
+                >
                   <Typography fontWeight={700}>{title}</Typography>
                   <Typography>{subtitle}</Typography>
                 </div>

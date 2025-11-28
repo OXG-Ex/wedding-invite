@@ -21,7 +21,7 @@ export const DressCode: FC = () => {
         </Typography>
 
         <Stack direction="row" className="justify-evenly w-full">
-          <div className="w-20 h-20 bg-white border border-black rounded-2xl " />
+          <div className="w-20 h-20 bg-amber-950 rounded-2xl " />
           <div className="w-20 h-20 bg-black rounded-2xl" />
           <div className="w-20 h-20 bg-red-800 rounded-2xl " />
           <div className="w-20 h-20 bg-emerald-800 rounded-2xl" />
