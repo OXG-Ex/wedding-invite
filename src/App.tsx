@@ -6,6 +6,7 @@ import {
   Typography,
   useMediaQuery,
 } from "@mui/material";
+import clsx from "clsx";
 import "./App.css";
 import UsPhoto from "./assets/us_photo.jpg";
 import {DaySchedule} from "./components/DaySchedule";
@@ -45,8 +46,12 @@ export const App = () => {
       <TopBlock />
 
       <Container className=" flex flex-col gap-15 pb-20" maxWidth="md">
-        <div className="flex w-full items-center justify-center">
-          <img src={UsPhoto} alt="aboba" className=" object-cover" />
+        <div className={clsx("flex w-full items-center justify-center")}>
+          <img
+            src={UsPhoto}
+            alt="aboba"
+            className={clsx(" object-cover", !isMobile && "h-[90vh]")}
+          />
         </div>
         <DaySchedule />
         <Location />
