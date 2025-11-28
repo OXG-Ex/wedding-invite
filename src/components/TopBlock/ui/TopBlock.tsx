@@ -13,7 +13,10 @@ export const TopBlock: FC = () => {
   return (
     <div className="">
       {isMobile && (
-        <Typography className="absolute top-10 text-center w-full" variant="h5">
+        <Typography
+          className="absolute top-10 text-center w-full"
+          variant={isMobile ? "h6" : "h5"}
+        >
           ПРИГЛАШЕНИЕ НА СВАДЬБУ
         </Typography>
       )}
@@ -83,33 +86,57 @@ export const TopBlock: FC = () => {
         <Stack
           direction="column"
           className={clsx(
-            "justify-center items-center w-[50%] h-screen px-10",
-            isMobile ? "w-full" : "w-[50%]"
+            "justify-center items-center w-[50%] px-10",
+            isMobile ? "w-full" : "w-[50%]  h-screen"
           )}
           gap={6}
         >
-          <Typography variant="h3" fontWeight={700} className="text-center">
+          <Typography
+            variant={isMobile ? "h4" : "h3"}
+            fontWeight={700}
+            className="text-center"
+          >
             ДОРОГИЕ ГОСТИ!
           </Typography>
-          <Typography variant="h5" className="text-center">
-            С огромным желанием и радостью мы приглашаем вас разделить с нами
+          <Typography variant={isMobile ? "h6" : "h5"} className="text-center">
+            С огромным волнением и радостью мы приглашаем вас разделить с нами
             этот особенный день - нашу свадьбу.
           </Typography>
 
           <Stack direction={"row"} className="items-center gap-2">
-            <Typography variant="h3">10</Typography>
-            <div className="border-l-3 border-red-800 h-full" />
-            <Typography variant="h3">10</Typography>
-            <div className="border-l-3 border-red-800 h-full" />
-            <Typography variant="h3">2026</Typography>
+            <Typography variant={isMobile ? "h4" : "h3"}>10</Typography>
+            <div
+              className={clsx(
+                "border-l-3 border-red-800 ",
+                isMobile ? "h-10" : "h-full"
+              )}
+            />
+            <Typography variant={isMobile ? "h4" : "h3"}>10</Typography>
+            <div
+              className={clsx(
+                "border-l-3 border-red-800 ",
+                isMobile ? "h-10" : "h-full"
+              )}
+            />
+            <Typography variant={isMobile ? "h4" : "h3"}>2026</Typography>
           </Stack>
 
-          <Typography variant="h5" className="text-center">
+          <Typography variant={isMobile ? "h6" : "h5"} className="text-center">
             Это будет незабываемое событие, и мы хотим, чтобы вы стали его
             частью.
           </Typography>
+
+          {isMobile && (
+            <Typography
+              variant={isMobile ? "h3" : "h2"}
+              fontWeight={700}
+              className="text-center"
+            >
+              ~
+            </Typography>
+          )}
           {!isMobile && (
-            <Typography variant="h3" fontWeight={700}>
+            <Typography variant={isMobile ? "h4" : "h3"} fontWeight={700}>
               Семён и Дарья
             </Typography>
           )}

@@ -8,6 +8,8 @@ import {
   RadioGroup,
   TextField,
   Typography,
+  useMediaQuery,
+  useTheme,
 } from "@mui/material";
 import {useState, type FC} from "react";
 import {alcoholDict, defaultValues} from "../lib/consts";
@@ -15,6 +17,9 @@ import {sendData} from "../lib/sendData";
 import type {TForm} from "../lib/types";
 
 export const RsvpForm: FC = () => {
+  const theme = useTheme();
+  const isMobile = useMediaQuery(theme.breakpoints.down("md"));
+
   const [formData, setFormData] = useState<TForm>(defaultValues);
   const [isLoading, setIsLoading] = useState(false);
   const [requestMessage, setRequestMessage] = useState("");
@@ -60,15 +65,19 @@ export const RsvpForm: FC = () => {
   return (
     <div className="w-full justify-center flex">
       <div className="flex flex-col gap-6 items-center">
-        <Typography variant="h3" fontWeight={700}>
+        <Typography
+          variant={isMobile ? "h4" : "h3"}
+          fontWeight={700}
+          textAlign="center"
+        >
           ПРИСУТСТВИЕ НА ТОРЖЕСТВЕ
         </Typography>
 
-        <Typography>
+        <Typography textAlign="center">
           Ваши ответы на вопросы очень помогут нам при организации свадьбы.
         </Typography>
 
-        <form onSubmit={handleSubmit} className="flex flex-col gap-4">
+        <form onSubmit={handleSubmit} className="flex flex-col gap-4 w-full">
           <FormControl>
             <Typography fontWeight={700}>
               Сможете ли вы присутствовать на торжестве ?
@@ -118,6 +127,7 @@ export const RsvpForm: FC = () => {
             <FormGroup>
               {Object.keys(alcoholDict).map((key) => (
                 <FormControlLabel
+                  key={key}
                   control={
                     <Checkbox
                       checked={formData.alcohol[key]}

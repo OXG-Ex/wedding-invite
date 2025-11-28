@@ -4,6 +4,7 @@ import {
   CssBaseline,
   ThemeProvider,
   Typography,
+  useMediaQuery,
 } from "@mui/material";
 import "./App.css";
 import UsPhoto from "./assets/us_photo.jpg";
@@ -35,16 +36,17 @@ const theme = createTheme({
 });
 
 export const App = () => {
-  console.log(123);
+  const isMobile = useMediaQuery(theme.breakpoints.down("md"));
+
   return (
     <ThemeProvider theme={theme}>
       <CssBaseline />
 
       <TopBlock />
 
-      <Container className=" flex flex-col gap-15 pb-20">
+      <Container className=" flex flex-col gap-15 pb-20" maxWidth="md">
         <div className="flex w-full items-center justify-center">
-          <img src={UsPhoto} alt="aboba" className="w-136 h-192 object-cover" />
+          <img src={UsPhoto} alt="aboba" className=" object-cover" />
         </div>
         <DaySchedule />
         <Location />
@@ -56,7 +58,11 @@ export const App = () => {
 
         <Typography textAlign="center">\\\ тут ещё одно фото///</Typography>
 
-        <Typography variant="h3" fontWeight={700} textAlign="center">
+        <Typography
+          variant={isMobile ? "h4" : "h3"}
+          fontWeight={700}
+          textAlign="center"
+        >
           МЫ БУДЕМ СЧАСТЛИВЫ ВИДЕТЬ ВАС!
         </Typography>
       </Container>
