@@ -44,7 +44,7 @@ export const App = () => {
 
       <Container className=" flex flex-col gap-15 pb-20">
         <div className="flex w-full items-center justify-center">
-          <img src={UsPhoto} alt="aboba" className="w-136 h-192 object-fill" />
+          <img src={UsPhoto} alt="aboba" className="w-136 h-192 object-cover" />
         </div>
         <DaySchedule />
         <Location />

@@ -1,49 +1,94 @@
 import KeyboardDoubleArrowDownOutlinedIcon from "@mui/icons-material/KeyboardDoubleArrowDownOutlined";
-import {Stack, Typography} from "@mui/material";
-import {Slide} from "react-awesome-reveal";
+import {Stack, Typography, useMediaQuery, useTheme} from "@mui/material";
+import {Slide, Zoom} from "react-awesome-reveal";
 import monogram from "../../../assets/Monogramm.svg";
 
+import clsx from "clsx";
 import type {FC} from "react";
 
 export const TopBlock: FC = () => {
+  const theme = useTheme();
+  const isMobile = useMediaQuery(theme.breakpoints.down("md"));
+
   return (
-    <div className="w-screen h-screen">
-      <Stack direction={"row"}>
+    <div className="">
+      {isMobile && (
+        <Typography className="absolute top-10 text-center w-full" variant="h5">
+          ПРИГЛАШЕНИЕ НА СВАДЬБУ
+        </Typography>
+      )}
+      <Stack direction={isMobile ? "column" : "row"}>
         <Stack
           direction="column"
-          className="justify-center items-center w-[50%] h-screen"
+          className={clsx(
+            "justify-center items-center  h-screen",
+            isMobile ? "w-full" : "w-[50%]"
+          )}
           gap={3}
         >
-          <Typography variant="h1" color="primary">
+          <Typography variant={isMobile ? "h2" : "h1"} color="primary">
             МЫ
           </Typography>
-          <Typography variant="h1">СОЗДАЁМ</Typography>
-          <Typography variant="h1">СЕМЬЮ!</Typography>
-          <img
-            src={monogram}
-            className="absolute top-auto left-0 w-[50%] h-[80%] object-fill opacity-20 "
-          />
+          <Typography variant={isMobile ? "h2" : "h1"}>СОЗДАЁМ</Typography>
+          <Typography variant={isMobile ? "h2" : "h1"}>СЕМЬЮ!</Typography>
+          <Zoom
+            triggerOnce
+            className={clsx(
+              "absolute top-auto left-auto  h-[80%] object-fill",
+              isMobile ? "w-[90%]" : "w-[50%]"
+            )}
+            delay={300}
+          >
+            <img src={monogram} className=" w-full h-full opacity-20" />
+          </Zoom>
+
+          {isMobile && (
+            <div className="absolute bottom-10 w-full flex flex-col gap-2 items-center">
+              <Typography fontWeight={700} variant="h6">
+                СЕМЁН И ДАРЬЯ
+              </Typography>
+              <Stack direction={"row"} className="items-center gap-1 h-full">
+                <Typography variant="body1">10</Typography>
+                <div className="border-l-2 border-red-800 h-6" />
+                <Typography variant="body1">10</Typography>
+                <div className="border-l-2 border-red-800 h-6" />
+                <Typography variant="body1">2026</Typography>
+              </Stack>
+              <Slide direction="down">
+                <KeyboardDoubleArrowDownOutlinedIcon
+                  color="primary"
+                  className="animate-pulse mt-5"
+                  fontSize="medium"
+                />
+              </Slide>
+            </div>
+          )}
         </Stack>
 
-        <div className="h-screen flex items-end pb-7">
-          <Slide direction="down">
-            <KeyboardDoubleArrowDownOutlinedIcon
-              color="primary"
-              className="animate-pulse"
-              sx={{
-                width: "40px",
-                height: "40px",
-              }}
-            />
-          </Slide>
-        </div>
+        {!isMobile && (
+          <div className="h-screen flex items-end pb-7">
+            <Slide direction="down">
+              <KeyboardDoubleArrowDownOutlinedIcon
+                color="primary"
+                className="animate-pulse"
+                sx={{
+                  width: "40px",
+                  height: "40px",
+                }}
+              />
+            </Slide>
+          </div>
+        )}
 
         <Stack
           direction="column"
-          className="justify-center items-center w-[50%] h-screen px-10"
+          className={clsx(
+            "justify-center items-center w-[50%] h-screen px-10",
+            isMobile ? "w-full" : "w-[50%]"
+          )}
           gap={6}
         >
-          <Typography variant="h3" fontWeight={700}>
+          <Typography variant="h3" fontWeight={700} className="text-center">
             ДОРОГИЕ ГОСТИ!
           </Typography>
           <Typography variant="h5" className="text-center">
@@ -63,10 +108,11 @@ export const TopBlock: FC = () => {
             Это будет незабываемое событие, и мы хотим, чтобы вы стали его
             частью.
           </Typography>
-
-          <Typography variant="h3" fontWeight={700}>
-            Семён и Дарья
-          </Typography>
+          {!isMobile && (
+            <Typography variant="h3" fontWeight={700}>
+              Семён и Дарья
+            </Typography>
+          )}
         </Stack>
       </Stack>
     </div>

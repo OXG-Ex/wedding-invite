@@ -20,7 +20,7 @@ export const Location: FC = () => {
           <Typography>г. Ростов-на-Дону, ул. Левобережная, 50.</Typography>
         </div>
 
-        <img src={Restaurant} className="object-fill w-140" />
+        <img src={Restaurant} className="object-cover w-140" />
 
         <Typography variant="h3" fontWeight={700}>
           КАК ДОБРАТЬСЯ?
