@@ -9,6 +9,7 @@ import {
   useTheme,
 } from "@mui/material";
 import type {FC} from "react";
+import {Slide} from "react-awesome-reveal";
 import {questions} from "../lib/consts";
 
 export const Questions: FC = () => {
@@ -25,26 +26,30 @@ export const Questions: FC = () => {
           ОТВЕТЫ НА ВОПРОСЫ
         </Typography>
         <div className="flex w-full flex-col gap-1">
-          {questions.map((item, idx) => (
-            <Accordion elevation={0} key={idx}>
-              <AccordionSummary
-                expandIcon={<ArrowDropDownIcon />}
-                aria-controls={`panel${idx}-content`}
-                id={`panel${idx}-header`}
-              >
-                <Typography
-                  component="span"
-                  variant={isMobile ? "h6" : "h5"}
-                  fontWeight={700}
-                >
-                  {item.question}
-                </Typography>
-              </AccordionSummary>
-              <AccordionDetails>
-                <Typography>{item.answer}</Typography>
-              </AccordionDetails>
-            </Accordion>
-          ))}
+          <Slide direction="up" duration={300} fraction={0} triggerOnce>
+            <>
+              {questions.map((item, idx) => (
+                <Accordion elevation={0} key={idx}>
+                  <AccordionSummary
+                    expandIcon={<ArrowDropDownIcon />}
+                    aria-controls={`panel${idx}-content`}
+                    id={`panel${idx}-header`}
+                  >
+                    <Typography
+                      component="span"
+                      variant={isMobile ? "h6" : "h5"}
+                      fontWeight={700}
+                    >
+                      {item.question}
+                    </Typography>
+                  </AccordionSummary>
+                  <AccordionDetails>
+                    <Typography>{item.answer}</Typography>
+                  </AccordionDetails>
+                </Accordion>
+              ))}
+            </>
+          </Slide>
         </div>
       </div>
     </div>

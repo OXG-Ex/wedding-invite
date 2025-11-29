@@ -7,10 +7,10 @@ import {
   useMediaQuery,
 } from "@mui/material";
 import clsx from "clsx";
+import {Slide} from "react-awesome-reveal";
 import "./App.css";
 import UsPhoto from "./assets/us_photo.jpg";
 import {DaySchedule} from "./components/DaySchedule";
-import {Details} from "./components/Details";
 import {DressCode} from "./components/DressCode";
 import {Location} from "./components/Location";
 import {Questions} from "./components/Questions";
@@ -55,21 +55,23 @@ export const App = () => {
         </div>
         <DaySchedule />
         <Location />
-        <Details />
         <DressCode />
-        <RsvpForm />
 
         <Questions />
 
         <Typography textAlign="center">\\\ тут ещё одно фото///</Typography>
 
-        <Typography
-          variant={isMobile ? "h4" : "h3"}
-          fontWeight={700}
-          textAlign="center"
-        >
-          МЫ БУДЕМ СЧАСТЛИВЫ ВИДЕТЬ ВАС!
-        </Typography>
+        <RsvpForm />
+
+        <Slide direction="up" duration={300} fraction={0} triggerOnce>
+          <Typography
+            variant={isMobile ? "h4" : "h3"}
+            fontWeight={700}
+            textAlign="center"
+          >
+            МЫ БУДЕМ СЧАСТЛИВЫ ВИДЕТЬ ВАС!
+          </Typography>
+        </Slide>
       </Container>
     </ThemeProvider>
   );

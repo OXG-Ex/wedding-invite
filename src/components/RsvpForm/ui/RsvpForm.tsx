@@ -12,6 +12,7 @@ import {
   useTheme,
 } from "@mui/material";
 import {useState, type FC} from "react";
+import {Slide} from "react-awesome-reveal";
 import {alcoholDict, defaultValues} from "../lib/consts";
 import {sendData} from "../lib/sendData";
 import type {TForm} from "../lib/types";
@@ -65,107 +66,113 @@ export const RsvpForm: FC = () => {
   return (
     <div className="w-full justify-center flex">
       <div className="flex flex-col gap-6 items-center">
-        <Typography
-          variant={isMobile ? "h4" : "h3"}
-          fontWeight={700}
-          textAlign="center"
-        >
-          ПРИСУТСТВИЕ НА ТОРЖЕСТВЕ
-        </Typography>
+        <Slide direction="right" duration={300} fraction={0} triggerOnce>
+          <Typography
+            variant={isMobile ? "h4" : "h3"}
+            fontWeight={700}
+            textAlign="center"
+          >
+            ПРИСУТСТВИЕ НА ТОРЖЕСТВЕ
+          </Typography>
 
-        <Typography textAlign="center">
-          Ваши ответы на вопросы очень помогут нам при организации свадьбы.
-        </Typography>
+          <Typography textAlign="center">
+            Ваши ответы на вопросы очень помогут нам при организации свадьбы.
+          </Typography>
 
-        <form onSubmit={handleSubmit} className="flex flex-col gap-4 w-full">
-          <FormControl>
-            <Typography fontWeight={700}>
-              Сможете ли вы присутствовать на торжестве ?
-            </Typography>
-            <RadioGroup
-              aria-labelledby="demo-radio-buttons-group-label"
-              defaultValue="will"
-              name="presence"
-              value={formData.presence}
-              onChange={handleChange}
-            >
-              <FormControlLabel
-                value="will"
-                control={<Radio />}
-                label="Я приду / Мы придём"
-              />
-              <FormControlLabel
-                value="wont"
-                control={<Radio />}
-                label="Прийти не получится"
-              />
-            </RadioGroup>
-          </FormControl>
-
-          <FormControl component="fieldset">
-            <Typography fontWeight={700}>Имя Фамилия</Typography>
-
-            <Typography variant="body2">
-              Если вы будете парой или семьёй, то внесите все имена и фамилии
-            </Typography>
-
-            <TextField
-              variant="outlined"
-              name="name"
-              value={formData.name}
-              onChange={handleChange}
-            />
-          </FormControl>
-
-          <FormControl component="fieldset" variant="standard">
-            <Typography fontWeight={700}>Предпочтения по напиткам:</Typography>
-
-            <Typography variant="body2">
-              Можно выбрать несколько вариантов
-            </Typography>
-
-            <FormGroup>
-              {Object.keys(alcoholDict).map((key) => (
+          <form onSubmit={handleSubmit} className="flex flex-col gap-4 w-full">
+            <FormControl>
+              <Typography fontWeight={700}>
+                Сможете ли вы присутствовать на торжестве ?
+              </Typography>
+              <RadioGroup
+                aria-labelledby="demo-radio-buttons-group-label"
+                defaultValue="will"
+                name="presence"
+                value={formData.presence}
+                onChange={handleChange}
+              >
                 <FormControlLabel
-                  key={key}
-                  control={
-                    <Checkbox
-                      checked={formData.alcohol[key]}
-                      onChange={handleCheckboxChange}
-                      name={key}
-                    />
-                  }
-                  label={alcoholDict[key]}
+                  value="will"
+                  control={<Radio />}
+                  label="Я приду / Мы придём"
                 />
-              ))}
-            </FormGroup>
-          </FormControl>
+                <FormControlLabel
+                  value="wont"
+                  control={<Radio />}
+                  label="Прийти не получится"
+                />
+              </RadioGroup>
+            </FormControl>
 
-          <FormControl component="fieldset">
-            <Typography fontWeight={700}>Дополнительные пожелания:</Typography>
+            <FormControl component="fieldset">
+              <Typography fontWeight={700}>Имя Фамилия</Typography>
 
-            <Typography variant="body2">
-              Что-то что нам необходимо учесть
-            </Typography>
-            <TextField
-              variant="outlined"
-              name="message"
-              rows={3}
-              value={formData.message}
-              onChange={handleChange}
-              multiline
-            />
-          </FormControl>
+              <Typography variant="body2">
+                Если вы будете парой или семьёй, то внесите все имена и фамилии
+              </Typography>
 
-          <Button type="submit" variant="outlined" loading={isLoading}>
-            Отправить
-          </Button>
-          {!!requestMessage && !isLoading && (
-            <Typography variant="body2" textAlign="center" color="primary">
-              {requestMessage}
-            </Typography>
-          )}
-        </form>
+              <TextField
+                variant="outlined"
+                name="name"
+                value={formData.name}
+                onChange={handleChange}
+              />
+            </FormControl>
+
+            <FormControl component="fieldset" variant="standard">
+              <Typography fontWeight={700}>
+                Предпочтения по напиткам:
+              </Typography>
+
+              <Typography variant="body2">
+                Можно выбрать несколько вариантов
+              </Typography>
+
+              <FormGroup>
+                {Object.keys(alcoholDict).map((key) => (
+                  <FormControlLabel
+                    key={key}
+                    control={
+                      <Checkbox
+                        checked={formData.alcohol[key]}
+                        onChange={handleCheckboxChange}
+                        name={key}
+                      />
+                    }
+                    label={alcoholDict[key]}
+                  />
+                ))}
+              </FormGroup>
+            </FormControl>
+
+            <FormControl component="fieldset">
+              <Typography fontWeight={700}>
+                Дополнительные пожелания:
+              </Typography>
+
+              <Typography variant="body2">
+                Что-то что нам необходимо учесть
+              </Typography>
+              <TextField
+                variant="outlined"
+                name="message"
+                rows={3}
+                value={formData.message}
+                onChange={handleChange}
+                multiline
+              />
+            </FormControl>
+
+            <Button type="submit" variant="outlined" loading={isLoading}>
+              Отправить
+            </Button>
+            {!!requestMessage && !isLoading && (
+              <Typography variant="body2" textAlign="center" color="primary">
+                {requestMessage}
+              </Typography>
+            )}
+          </form>
+        </Slide>
       </div>
     </div>
   );
