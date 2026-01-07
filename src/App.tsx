@@ -10,6 +10,7 @@ import clsx from "clsx";
 import {Slide} from "react-awesome-reveal";
 import "./App.css";
 import UsPhoto from "./assets/us_photo.jpg";
+import UsPhoto2 from "./assets/us_photo2.jpg";
 import {DaySchedule} from "./components/DaySchedule";
 import {DressCode} from "./components/DressCode";
 import {Location} from "./components/Location";
@@ -59,7 +60,13 @@ export const App = () => {
 
         <Questions />
 
-        <Typography textAlign="center">\\\ тут ещё одно фото///</Typography>
+        <div className={clsx("flex w-full items-center justify-center")}>
+          <img
+            src={UsPhoto2}
+            alt="aboba"
+            className={clsx(" object-cover", !isMobile && "h-[80vh]")}
+          />
+        </div>
 
         <RsvpForm />
 

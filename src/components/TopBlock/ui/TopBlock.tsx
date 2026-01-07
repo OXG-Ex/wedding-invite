@@ -6,9 +6,18 @@ import monogram from "../../../assets/Monogramm.svg";
 import clsx from "clsx";
 import type {FC} from "react";
 
+const names = [
+  "Дорогие Максим и Лена!",
+  "Дорогие Артём и Алёна!",
+  "Дорогой Олег!",
+];
+
 export const TopBlock: FC = () => {
   const theme = useTheme();
   const isMobile = useMediaQuery(theme.breakpoints.down("md"));
+  const queryString = window.location.search;
+  const urlParams = new URLSearchParams(queryString);
+  const topText = names[Number.parseInt(urlParams.get("nm") || "255")];
 
   return (
     <div className="">
@@ -96,7 +105,7 @@ export const TopBlock: FC = () => {
             fontWeight={700}
             className="text-center"
           >
-            ДОРОГИЕ ГОСТИ!
+            {topText || "ДОРОГИЕ ГОСТИ!"}
           </Typography>
           <Typography variant={isMobile ? "h6" : "h5"} className="text-center">
             С огромным волнением и радостью мы приглашаем вас разделить с нами
