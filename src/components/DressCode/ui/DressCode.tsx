@@ -1,4 +1,4 @@
-import {Stack, Typography, useMediaQuery, useTheme} from "@mui/material";
+import {Chip, Stack, Typography, useMediaQuery, useTheme} from "@mui/material";
 import type {FC} from "react";
 import {Slide} from "react-awesome-reveal";
 
@@ -35,10 +35,45 @@ export const DressCode: FC = () => {
           </Typography>
 
           <Stack direction="row" className="justify-evenly w-full">
-            <div className="w-20 h-20 bg-amber-900 rounded-2xl " />
-            <div className="w-20 h-20 bg-black rounded-2xl" />
-            <div className="w-20 h-20 bg-red-800 rounded-2xl " />
-            <div className="w-20 h-20 bg-emerald-800 rounded-2xl" />
+            <div className="flex flex-col gap-2 items-center">
+              <div className="w-20 h-20 bg-amber-900 rounded-2xl " />
+              <Chip
+                variant="outlined"
+                color="default"
+                label="Коричневый"
+                size={isMobile ? "small" : "medium"}
+              />
+            </div>
+
+            <div className="flex flex-col gap-2 items-center">
+              <div className="w-20 h-20 bg-black rounded-2xl" />
+              <Chip
+                variant="outlined"
+                color="default"
+                label="Чёрный"
+                size={isMobile ? "small" : "medium"}
+              />
+            </div>
+
+            <div className="flex flex-col gap-2 items-center">
+              <div className="w-20 h-20 bg-red-800 rounded-2xl " />
+              <Chip
+                variant="outlined"
+                color="default"
+                label="Бордовый"
+                size={isMobile ? "small" : "medium"}
+              />
+            </div>
+
+            <div className="flex flex-col gap-2 items-center">
+              <div className="w-20 h-20 bg-emerald-800 rounded-2xl" />
+              <Chip
+                variant="outlined"
+                color="default"
+                label="Изумрудный"
+                size={isMobile ? "small" : "medium"}
+              />
+            </div>
           </Stack>
         </Slide>
       </div>
